@@ -1,5 +1,6 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~ Li Chao max ~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+template<ll SZ>
 struct LiChao_max{
     struct Line{
         ll k,m;
@@ -18,10 +19,9 @@ struct LiChao_max{
     };
     typedef node* pnode;
 
-    pnode root;
-    ll SZ;
-
-    void init(ll sz){SZ=sz; root=nullptr;}
+    pnode root=nullptr;
+    
+    void Reset(){root=nullptr;}
     void Set(ll k,ll m){
         Line p = Line(k,m);
         Set(root,0,SZ,p);
@@ -63,11 +63,11 @@ struct LiChao_max{
         if(x<=mid)return max(v->p.Get(x),Get(v->l,ss,mid,x));
         return max(v->p.Get(x),Get(v->r,mid+1,se,x));
     }
-
 };
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~ Li Chao min ~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+template<int SZ>
 struct LiChao_min{
     struct Line{
         ll k,m;
@@ -86,10 +86,9 @@ struct LiChao_min{
     };
     typedef node* pnode;
 
-    pnode root;
-    ll SZ;
+    pnode root = nullptr;
 
-    void init(ll sz){SZ=sz; root=nullptr;}
+    void Reset(){root=nullptr;}
     void Set(ll k,ll m){
         Line p = Line(k,m);
         Set(root,0,SZ,p);
@@ -109,7 +108,7 @@ struct LiChao_min{
         if(t.Get(ss)>=v->p.Get(ss)&&t.Get(se)>=v->p.Get(se))return;
 
         ll mid=(ss+se)>>1LL;
-        
+
         if(t.Get(ss)>v->p.Get(ss)&&t.Get(mid)<v->p.Get(mid)){
             swap(t,v->p);
             Set(v->l,ss,mid,t);
@@ -131,7 +130,6 @@ struct LiChao_min{
         if(x<=mid)return min(v->p.Get(x),Get(v->l,ss,mid,x));
         return min(v->p.Get(x),Get(v->r,mid+1,se,x));
     }
-
 };
 
 
