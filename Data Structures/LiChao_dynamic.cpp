@@ -37,12 +37,6 @@ struct LiChao_max{
             return;
         }
 
-        ll trl=v->p.Get(ss);
-        ll trr=v->p.Get(se);
-
-        ll vl=t.Get(ss);
-        ll vr=t.Get(se);
-
         if(t.Get(ss)>v->p.Get(ss)&&t.Get(se)>v->p.Get(se)){v->p=t;return;}
         if(t.Get(ss)<=v->p.Get(ss)&&t.Get(se)<=v->p.Get(se))return;
 
@@ -111,23 +105,17 @@ struct LiChao_min{
             return;
         }
 
-        ll trl=v->p.Get(ss);
-        ll trr=v->p.Get(se);
-
-        ll vl=t.Get(ss);
-        ll vr=t.Get(se);
-
-        if(t.Get(ss)>v->p.Get(ss)&&t.Get(se)>v->p.Get(se)){v->p=t;return;}
-        if(t.Get(ss)<=v->p.Get(ss)&&t.Get(se)<=v->p.Get(se))return;
+        if(t.Get(ss)<v->p.Get(ss)&&t.Get(se)<v->p.Get(se)){v->p=t;return;}
+        if(t.Get(ss)>=v->p.Get(ss)&&t.Get(se)>=v->p.Get(se))return;
 
         ll mid=(ss+se)>>1LL;
-
-        if(t.Get(ss)<v->p.Get(ss)&&t.Get(mid)>v->p.Get(mid)){
+        
+        if(t.Get(ss)>v->p.Get(ss)&&t.Get(mid)<v->p.Get(mid)){
             swap(t,v->p);
             Set(v->l,ss,mid,t);
-        }else if(t.Get(ss)<v->p.Get(ss)&&t.Get(mid)<v->p.Get(mid)){
+        }else if(t.Get(ss)>v->p.Get(ss)&&t.Get(mid)>v->p.Get(mid)){
             Set(v->r,mid+1,se,t);
-        }else if(t.Get(ss)>v->p.Get(ss)&&t.Get(mid)<v->p.Get(mid)){
+        }else if(t.Get(ss)<v->p.Get(ss)&&t.Get(mid)>v->p.Get(mid)){
             Set(v->l,ss,mid,t);
         }else{
             swap(t,v->p);
